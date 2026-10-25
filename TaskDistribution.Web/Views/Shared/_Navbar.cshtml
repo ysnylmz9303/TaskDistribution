@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom">
+	<div class="container">
+		<a class="navbar-brand" asp-controller="Home" asp-action="Index">Görev Dağıtımı</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#mainMenu" aria-controls="mainMenu"
+				aria-expanded="false" aria-label="Menüyü aç veya kapat">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="mainMenu">
+			<ul class="navbar-nav ms-auto">
+				<li class="nav-item">
+					<a class="nav-link" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-controller="Personnel" asp-action="Index">Personeller</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-controller="Personnel" asp-action="Create">Personel Ekle</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-controller="WorkTask" asp-action="Create">
+						Görev Oluştur
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" asp-controller="WorkTask" asp-action="Index">
+						Görevler
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

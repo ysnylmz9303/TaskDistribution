@@ -1,0 +1,54 @@
+﻿@model WorkTaskCreateViewModel
+
+@{
+	ViewData["Title"] = "Görev Oluştur";
+}
+
+<div class="content-panel form-panel">
+	<h1 class="mb-4">Görev Oluştur</h1>
+
+	<form asp-controller="WorkTask" asp-action="Create" method="post">
+		<div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+		<div class="mb-3">
+			<label asp-for="Title" class="form-label">Başlık</label>
+			<input asp-for="Title" class="form-control" />
+			<span asp-validation-for="Title" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="Description" class="form-label">Açıklama</label>
+			<textarea asp-for="Description"
+					  class="form-control"
+					  rows="4"></textarea>
+			<span asp-validation-for="Description" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="OperationTypeId" class="form-label">İşlem Türü</label>
+			<select asp-for="OperationTypeId" class="form-select">
+				<option value="">İşlem türü seçiniz</option>
+
+				@foreach (var operationType in Model.OperationTypes)
+				{
+					<option value="@operationType.Id">
+						@operationType.Name — Zorluk @operationType.DifficultyLevel
+					</option>
+				}
+			</select>
+			<span asp-validation-for="OperationTypeId" class="text-danger"></span>
+		</div>
+
+		<button type="submit" class="btn btn-primary">Kaydet</button>
+
+		<a asp-controller="WorkTask" asp-action="Index" class="btn btn-outline-secondary">
+			Vazgeç
+		</a>
+	</form>
+</div>
+
+
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

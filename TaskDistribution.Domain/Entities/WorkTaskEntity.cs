@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +7,17 @@ using TaskDistribution.Domain.Common;
 
 namespace TaskDistribution.Domain.Entities
 {
-	public class WorkTask : BaseEntity
+	public class WorkTaskEntity : BaseEntity
 	{
 		public string Title { get; set; } = string.Empty;
 		public string Description { get; set; } = string.Empty;
 
 		public int? AssignedPersonnelId { get; set; }
-		public Personnel? AssignedPersonnel { get; set; }
+		public PersonnelEntity? AssignedPersonnel { get; set; }
 
 		public int OperationTypeId { get; set; }
-		public OperationType Operationtype { get; set; } = null;
+		public OperationTypeEntity OperationType { get; set; } = null;
 		public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
+		public DateTime? AssignedDate { get; set; }
 	}
 }

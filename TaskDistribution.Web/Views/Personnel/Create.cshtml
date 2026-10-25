@@ -1,0 +1,27 @@
+@model PersonnelCreateRequest
+
+@{
+	ViewData["Title"] = "Personel Ekle";
+}
+
+<div class="content-panel form-panel">
+	<h1 class="mb-4">Personel Ekle</h1>
+
+	<form asp-controller="Personnel" asp-action="Create" method="post">
+		<div asp-validation-summary="All" class="text-danger mb-3"></div>
+		<div class="mb-3">
+			<label asp-for="FirstName" class="form-label">Ad</label>
+			<input asp-for="FirstName" class="form-control" />
+		</div>
+
+		<div class="mb-3">
+			<label asp-for="LastName" class="form-label">Soyad</label>
+			<input asp-for="LastName" class="form-control" />
+		</div>
+
+		<button type="submit" class="btn btn-primary">Kaydet</button>
+		<a asp-controller="Personnel" asp-action="Index" class="btn btn-outline-secondary">
+			Listeye Dön
+		</a>
+	</form>
+</div>

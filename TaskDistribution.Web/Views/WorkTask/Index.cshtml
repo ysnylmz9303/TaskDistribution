@@ -1,0 +1,67 @@
+﻿@model IReadOnlyList<WorkTaskResponse>
+
+@{
+	ViewData["Title"] = "Görev Listesi";
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+	<div>
+		<h1>Görev Listesi</h1>
+		<p class="text-muted mb-0">Oluşturulan görevleri ve atanan personelleri görüntüleyin.</p>
+	</div>
+
+	<a asp-controller="WorkTask" asp-action="Create" class="btn btn-primary">
+		Görev Oluştur
+	</a>
+</div>
+
+<div class="content-panel">
+	@if (TempData["SuccessMessage"] != null)
+	{
+		<div class="alert alert-success" role="status">
+			@TempData["SuccessMessage"]
+		</div>
+	}
+	@if (TempData["WarningMessage"] != null)
+	{
+		<div class="alert alert-warning" role="status">
+			@TempData["WarningMessage"]
+		</div>
+	}
+	<p class="text-muted">Toplam @Model.Count görev</p>
+
+	<div class="table-responsive">
+		<table class="table table-hover mb-0">
+			<thead>
+				<tr>
+					<th>Başlık</th>
+					<th>İşlem Türü</th>
+					<th>Zorluk</th>
+					<th>Atanan Personel</th>
+					<th>Oluşturulma Tarihi (UTC)</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Count == 0)
+				{
+					<tr>
+						<td colspan="5" class="text-center text-muted py-5">
+							Henüz görev oluşturulmamış.
+						</td>
+					</tr>
+				}
+
+				@foreach (var workTask in Model)
+				{
+					<tr>
+						<td>@workTask.Title</td>
+						<td>@workTask.OperationTypeName</td>
+						<td>@workTask.DifficultyLevel</td>
+						<td>@workTask.AssignedPersonnelName</td>
+						<td>@workTask.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

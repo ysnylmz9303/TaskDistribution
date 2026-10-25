@@ -11,8 +11,16 @@ namespace TaskDistribution.Infrastructure.Persistence
 		{
 		}
 		
-		public DbSet<Personnel> Personnels { get; set; }
-		public DbSet<WorkTask> WorkTasks { get; set; }
-		public DbSet<OperationType> OperationTypes { get; set; }
+		public DbSet<PersonnelEntity> Personnels { get; set; }
+		public DbSet<WorkTaskEntity> WorkTasks { get; set; }
+		public DbSet<OperationTypeEntity> OperationTypes { get; set; }
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.ApplyConfigurationsFromAssembly(
+				typeof(ApplicationDbContext).Assembly);
+		}
 	}
 }

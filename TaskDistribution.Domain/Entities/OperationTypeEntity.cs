@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +7,12 @@ using TaskDistribution.Domain.Common;
 
 namespace TaskDistribution.Domain.Entities
 {
-	public class OperationType : BaseEntity
+	public class OperationTypeEntity : BaseEntity
 	{
 		public string Name { get; set; } = string.Empty;
 		public int DifficultyLevel { get; set; }
-		public ICollection<WorkTask> WorkTasks { get; set; } = new List<WorkTask>();
+		public ICollection<WorkTaskEntity> WorkTasks { get; set; } = new List<WorkTaskEntity>();
+
 
 	}
 }

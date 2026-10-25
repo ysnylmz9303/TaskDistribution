@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+	ViewData["Title"] = "Ana Sayfa";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<section class="welcome-panel mb-4">
+	<p class="section-label">GÖREV DAĞITIMI</p>
+	<h1>Ekibinizi tek yerden yönetin.</h1>
+	<p class="text-muted mb-4">Personel bilgilerine ulaşın, yeni kayıt ekleyin ve ekibinizi güncel tutun.</p>
+	<a asp-controller="Personnel" asp-action="Index" class="btn btn-primary">Personelleri Görüntüle</a>
+</section>
+
+<div class="row g-4">
+	<div class="col-md-6">
+		<section class="content-panel h-100">
+			<h2 class="h5">Personel listesi</h2>
+			<p class="text-muted">Kayıtlı personelleri görüntüleyin, bilgilerini ve aktiflik durumlarını düzenleyin.</p>
+			<a asp-controller="Personnel" asp-action="Index" class="btn btn-outline-primary">Listeye Git</a>
+		</section>
+	</div>
+	<div class="col-md-6">
+		<section class="content-panel h-100">
+			<h2 class="h5">Yeni personel</h2>
+			<p class="text-muted">Ekibinize katılan bir personeli ad ve soyad bilgileriyle sisteme ekleyin.</p>
+			<a asp-controller="Personnel" asp-action="Create" class="btn btn-outline-primary">Personel Ekle</a>
+		</section>
+	</div>
 </div>

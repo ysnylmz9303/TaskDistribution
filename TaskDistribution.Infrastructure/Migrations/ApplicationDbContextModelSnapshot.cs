@@ -22,7 +22,7 @@ namespace TaskDistribution.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TaskDistribution.Domain.Entities.OperationType", b =>
+            modelBuilder.Entity("TaskDistribution.Domain.Entities.OperationTypeEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,14 +35,15 @@ namespace TaskDistribution.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("OperationTypes");
+                    b.ToTable("OperationTypes", (string)null);
                 });
 
-            modelBuilder.Entity("TaskDistribution.Domain.Entities.Personnel", b =>
+            modelBuilder.Entity("TaskDistribution.Domain.Entities.PersonnelEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,27 +53,32 @@ namespace TaskDistribution.Infrastructure.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Personnels");
+                    b.ToTable("Personnels", (string)null);
                 });
 
-            modelBuilder.Entity("TaskDistribution.Domain.Entities.WorkTask", b =>
+            modelBuilder.Entity("TaskDistribution.Domain.Entities.WorkTaskEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("AssignedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("AssignedPersonnelId")
                         .HasColumnType("int");
@@ -82,14 +88,16 @@ namespace TaskDistribution.Infrastructure.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<int>("OperationTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -97,32 +105,33 @@ namespace TaskDistribution.Infrastructure.Migrations
 
                     b.HasIndex("OperationTypeId");
 
-                    b.ToTable("WorkTasks");
+                    b.ToTable("WorkTasks", (string)null);
                 });
 
-            modelBuilder.Entity("TaskDistribution.Domain.Entities.WorkTask", b =>
+            modelBuilder.Entity("TaskDistribution.Domain.Entities.WorkTaskEntity", b =>
                 {
-                    b.HasOne("TaskDistribution.Domain.Entities.Personnel", "AssignedPersonnel")
+                    b.HasOne("TaskDistribution.Domain.Entities.PersonnelEntity", "AssignedPersonnel")
                         .WithMany("WorkTasks")
-                        .HasForeignKey("AssignedPersonnelId");
+                        .HasForeignKey("AssignedPersonnelId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("TaskDistribution.Domain.Entities.OperationType", "Operationtype")
+                    b.HasOne("TaskDistribution.Domain.Entities.OperationTypeEntity", "OperationType")
                         .WithMany("WorkTasks")
                         .HasForeignKey("OperationTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AssignedPersonnel");
 
-                    b.Navigation("Operationtype");
+                    b.Navigation("OperationType");
                 });
 
-            modelBuilder.Entity("TaskDistribution.Domain.Entities.OperationType", b =>
+            modelBuilder.Entity("TaskDistribution.Domain.Entities.OperationTypeEntity", b =>
                 {
                     b.Navigation("WorkTasks");
                 });
 
-            modelBuilder.Entity("TaskDistribution.Domain.Entities.Personnel", b =>
+            modelBuilder.Entity("TaskDistribution.Domain.Entities.PersonnelEntity", b =>
                 {
                     b.Navigation("WorkTasks");
                 });

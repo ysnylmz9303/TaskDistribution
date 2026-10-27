@@ -10,9 +10,4 @@
     <ProjectReference Include="..\TaskDistribution.Domain\TaskDistribution.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

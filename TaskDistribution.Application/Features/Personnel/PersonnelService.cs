@@ -34,7 +34,6 @@ namespace TaskDistribution.Application.Features.Personnel
 			};
 		}
 
-
 		public async Task<PersonnelResponse?> GetByIdAsync(int id, CancellationToken cancellationToken = default)
 		{
 			var personnel = await _personnelRepository.GetByIdAsync(id, cancellationToken);

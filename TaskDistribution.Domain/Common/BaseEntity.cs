@@ -10,4 +10,5 @@ namespace TaskDistribution.Domain.Common
 	{
 		public int Id { get; set; }
 	}
+
 }
